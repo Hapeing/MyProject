@@ -22,14 +22,19 @@ public:
 	int32 TotalDamage;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Damage")
-		float DamageTimeInSeconds;
+	float DamageTimeInSeconds;
 
 	UPROPERTY(BlueprintReadOnly, VisibleAnywhere, Transient, Category = "Damage")//transient means that it is a non-persistent value, it is meant to change
-		float DamagePerSecond;
+	float DamagePerSecond;
 
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
+	void PostInitProperties();
 
+	UFUNCTION(BlueprintCallable, Category = "Damage")
+	void CalculateValues();
+
+	void PostEditChangeProperty(FPropertyChangedEvent & PropertyChangedEvent);
 };
